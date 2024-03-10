@@ -10,11 +10,21 @@
     },
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
-  "extensions": [
-    "GitHub.github-vscode-theme",
-    "rangav.vscode-thunder-client"
-    // Additional Extensions Here
-  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.github-vscode-theme",
+        "rangav.vscode-thunder-client",
+        "vmware.vscode-boot-dev-pack"
+      ]
+    }
+  },
+  //  "extensions": [
+  //    "GitHub.github-vscode-theme",
+  //    "rangav.vscode-thunder-client",
+  //    "vmware.vscode-boot-dev-pack"
+  // Additional Extensions Here
+  //  ],
   "onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc",
   "postAttachCommand": "git pull --all"
   // Update welcome text and set terminal prompt to '$ '

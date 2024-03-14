@@ -1,7 +1,6 @@
 package com.example.explorecalijpa;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -77,7 +76,7 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
                         t.bullets(),
                         t.keywords(),
                         Difficulty.valueOf(t.difficulty()),
-                        Region.valueOf(t.region()))
+                        Region.findByLabel(t.region()))
         ).toList();
     }
 }

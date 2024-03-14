@@ -20,7 +20,7 @@ public class TourPackageService {
   }
 
   public List<TourPackage> lookupAll() {
-    return null;
+    return tourPackageRepository.findAll();
   }
 
   public long total() {

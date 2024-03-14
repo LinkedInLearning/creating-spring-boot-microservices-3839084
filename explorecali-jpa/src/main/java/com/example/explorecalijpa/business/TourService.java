@@ -30,6 +30,6 @@ public class TourService {
   }
 
   public long total() {
-    return 0;
+    return tourRepository.count();
   }
 }

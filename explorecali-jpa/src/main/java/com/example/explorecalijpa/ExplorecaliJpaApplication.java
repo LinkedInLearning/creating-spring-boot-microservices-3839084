@@ -34,8 +34,15 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         createTourAllPackages();
+        System.out.println("Persisted Packages = " + tourPackageService.total());
         createToursFromFile(TOUR_IMPORT_FILE);
-        printToursChallenge();
+        System.out.println("Persisted Tours = " + tourService.total());
+        /********* CHALLENGES **********/
+        System.out.println("\n\nEasy Tours");
+        tourService.lookupByDifficulty(Difficulty.Easy).forEach(System.out::println);
+
+        System.out.println("\n\nBackpack Cali Tours");
+        tourService.lookupByPackage("BC").forEach(System.out::println);
     }
 
     /**
@@ -47,6 +54,7 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
     private void printToursChallenge() {
 
     }
+
     /**
      * Initialize all the known tour packages
      */
@@ -66,8 +74,7 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
      * Create tour entities from an external file
      */
     private void createToursFromFile(String fileToImport) throws IOException {
-         TourFromFile.read(fileToImport).forEach(t -> 
-            tourService.createTour(
+        TourFromFile.read(fileToImport).forEach(t -> tourService.createTour(
                 t.packageName(),
                 t.title(),
                 t.description(),
@@ -77,20 +84,19 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
                 t.bullets(),
                 t.keywords(),
                 Difficulty.valueOf(t.difficulty()),
-                Region.findByLabel(t.region())
-            )
-        );
+                Region.findByLabel(t.region())));
     }
-    
+
     /*
      * Helper to import ExploreCali.json
      */
     record TourFromFile(String packageName, String title, String description,
-            String blurb, Integer price, String length, String bullets, 
+            String blurb, Integer price, String length, String bullets,
             String keywords, String difficulty, String region) {
         static List<TourFromFile> read(String fileToImport) throws IOException {
-         return new ObjectMapper().readValue(new File(fileToImport), 
-            new TypeReference<List<TourFromFile>>() {});
+            return new ObjectMapper().readValue(new File(fileToImport),
+                    new TypeReference<List<TourFromFile>>() {
+                    });
         }
     }
 }

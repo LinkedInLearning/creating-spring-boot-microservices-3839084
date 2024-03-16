@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +13,6 @@ import com.example.explorecalijpa.business.TourPackageService;
 import com.example.explorecalijpa.business.TourService;
 import com.example.explorecalijpa.model.Difficulty;
 import com.example.explorecalijpa.model.Region;
-import com.example.explorecalijpa.model.Tour;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

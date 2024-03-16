@@ -16,7 +16,8 @@ public class TourPackageService {
   }
 
   public TourPackage createTourPackage(String code, String name) {
-    return tourPackageRepository.save(new TourPackage(code, name));
+    return tourPackageRepository.findById(code)
+        .orElse(tourPackageRepository.save(new TourPackage(code, name)));
   }
 
   public List<TourPackage> lookupAll() {

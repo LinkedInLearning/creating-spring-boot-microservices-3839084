@@ -20,8 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootApplication
 public class ExplorecaliJpaApplication implements CommandLineRunner {
-    @Value("${ec.importfile}")
-    private String importFile;
+    private final String TOUR_IMPORT_FILE="ExploreCalifornia.json";
 
     @Autowired
     private TourPackageService tourPackageService;
@@ -37,7 +36,7 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         createTourAllPackages();
-        createToursFromFile(importFile);
+        createToursFromFile(TOUR_IMPORT_FILE);
     }
 
     /**

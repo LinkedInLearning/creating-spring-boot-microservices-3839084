@@ -1,8 +1,10 @@
 package com.example.explorecalijpa.repo;
 
 import com.example.explorecalijpa.model.TourPackage;
-import org.springframework.data.repository.ListCrudRepository;
 
-public interface TourPackageRepository extends ListCrudRepository<TourPackage, String> {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface TourPackageRepository extends JpaRepository<TourPackage, String> {
   
 }

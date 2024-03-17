@@ -6,7 +6,9 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
+/*
+ * Challenge: Change url keyword and link keyword to "packages"
+ */
 public interface TourPackageRepository extends JpaRepository<TourPackage, String> {
   Optional<TourPackage> findByName(String name);
 }

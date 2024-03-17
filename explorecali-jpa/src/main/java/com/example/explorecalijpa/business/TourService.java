@@ -33,11 +33,11 @@ public class TourService {
   }
 
   public List<Tour> lookupByDifficulty(Difficulty difficulty) {
-    return tourRepository.findByDifficulty(difficulty);
+    return Collections.emptyList();
   }
 
   public List<Tour> lookupByPackage(String tourPackageCode) {
-    return tourRepository.findByTourPackageCode(tourPackageCode);
+    return Collections.emptyList();
   }
 
   public long total() {

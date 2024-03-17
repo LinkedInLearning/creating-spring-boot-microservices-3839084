@@ -37,6 +37,7 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
         System.out.println("Persisted Packages = " + tourPackageService.total());
         createToursFromFile(TOUR_IMPORT_FILE);
         System.out.println("Persisted Tours = " + tourService.total());
+       
         /********* CHALLENGES **********/
         System.out.println("\n\nEasy Tours");
         tourService.lookupByDifficulty(Difficulty.Easy).forEach(System.out::println);

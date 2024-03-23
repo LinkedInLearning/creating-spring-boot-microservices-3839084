@@ -108,10 +108,4 @@ public class TourRatingController {
   public void delete(@PathVariable(value = "tourId") int tourId, @PathVariable(value = "customerId") int customerId) {
     tourRatingService.delete(tourId, customerId);
   }
-
- // @ExceptionHandler(NoSuchElementException.class)
- // @ResponseStatus(HttpStatus.NOT_FOUND)
-  public String return404(NoSuchElementException exception) {
-    return exception.getMessage();
-  }
 }

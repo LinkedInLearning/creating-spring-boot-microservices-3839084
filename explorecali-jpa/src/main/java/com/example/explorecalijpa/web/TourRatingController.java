@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.explorecalijpa.business.TourRatingService;
+import com.example.explorecalijpa.model.TourRating;
 
 /**
  * Tour Rating Controller
@@ -36,9 +37,11 @@ public class TourRatingController {
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public void createTourRating(@PathVariable(value = "tourId") int tourId,
+  public RatingDto createTourRating(@PathVariable(value = "tourId") int tourId,
       @RequestBody @Validated RatingDto ratingDto) {
-    tourRatingService.createNew(tourId, ratingDto.getCustomerId(), ratingDto.getScore(), ratingDto.getComment());
+      TourRating rating = tourRatingService.createNew(tourId, ratingDto.getCustomerId(), 
+        ratingDto.getScore(), ratingDto.getComment());
+      return new RatingDto(rating);
   }
 
   @ExceptionHandler(NoSuchElementException.class)

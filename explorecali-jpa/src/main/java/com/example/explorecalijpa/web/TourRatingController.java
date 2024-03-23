@@ -89,7 +89,7 @@ public class TourRatingController {
    * @return The modified Rating DTO.
    */
   public RatingDto updateWithPatch(@PathVariable(value = "tourId") int tourId, @RequestBody @Validated RatingDto ratingDto) {
-      return null;
+      return ratingDto;
   }
 
   /**

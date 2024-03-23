@@ -5,10 +5,12 @@ import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -61,6 +63,30 @@ public class TourRatingController {
   @GetMapping("/average")
   public Double getAverage(@PathVariable(value = "tourId") int tourId) {
     return tourRatingService.getAverageScore(tourId);
+  }
+
+  /**
+   * Update score and comment of a Tour Rating
+   *
+   * @param tourId
+   * @param ratingDto
+   * @return The modified Rating DTO.
+   */
+  @PutMapping
+  public RatingDto updateWithPut(@PathVariable(value = "tourId") int tourId, @RequestBody @Validated RatingDto ratingDto) {
+      return new RatingDto(tourRatingService.update(tourId, ratingDto.getCustomerId(),
+                ratingDto.getScore(), ratingDto.getComment()));
+  }
+
+  /**
+   * Delete a Rating of a tour made by a customer
+   *
+   * @param tourId
+   * @param customerId
+   */
+  @DeleteMapping("/{customerId}")
+  public void delete(@PathVariable(value = "tourId") int tourId, @PathVariable(value = "customerId") int customerId) {
+      tourRatingService.delete(tourId, customerId);
   }
 
   @ExceptionHandler(NoSuchElementException.class)

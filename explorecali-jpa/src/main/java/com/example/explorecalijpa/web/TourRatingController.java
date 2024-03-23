@@ -1,10 +1,12 @@
 package com.example.explorecalijpa.web;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -44,10 +46,26 @@ public class TourRatingController {
       return new RatingDto(rating);
   }
 
+  @GetMapping
+  public List<RatingDto> getAllRatingsForTour(@PathVariable(value = "tourId") int tourId) {
+    List<TourRating> tourRatings = tourRatingService.lookupRatings(tourId);
+    return tourRatings.stream().map(RatingDto::new).toList();
+  }
+
+  /**
+   * Calculate the average Score of a Tour.
+   *
+   * @param tourId
+   * @return the average value.
+   */
+  @GetMapping("/average")
+  public Double getAverage(@PathVariable(value = "tourId") int tourId) {
+    return tourRatingService.getAverageScore(tourId);
+  }
+
   @ExceptionHandler(NoSuchElementException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
   public String return404(NoSuchElementException exception) {
     return exception.getMessage();
   }
-
 }

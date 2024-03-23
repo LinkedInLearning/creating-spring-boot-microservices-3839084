@@ -1,6 +1,8 @@
 package com.example.explorecalijpa.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
@@ -59,8 +61,8 @@ public class TourRatingController {
    * @return the average value.
    */
   @GetMapping("/average")
-  public Double getAverage(@PathVariable(value = "tourId") int tourId) {
-    return tourRatingService.getAverageScore(tourId);
+  public Map<String, Double> getAverage(@PathVariable(value = "tourId") int tourId) {
+    return Map.of("average", tourRatingService.getAverageScore(tourId));
   }
 
   @ExceptionHandler(NoSuchElementException.class)

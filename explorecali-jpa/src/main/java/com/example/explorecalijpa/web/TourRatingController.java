@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.explorecalijpa.business.TourRatingService;
 import com.example.explorecalijpa.model.TourRating;
 
+import jakarta.validation.Valid;
+
 /**
  * Tour Rating Controller
  *
@@ -110,8 +112,8 @@ public class TourRatingController {
     tourRatingService.delete(tourId, customerId);
   }
 
-  @ExceptionHandler(NoSuchElementException.class)
-  @ResponseStatus(HttpStatus.NOT_FOUND)
+ // @ExceptionHandler(NoSuchElementException.class)
+ // @ResponseStatus(HttpStatus.NOT_FOUND)
   public String return404(NoSuchElementException exception) {
     return exception.getMessage();
   }

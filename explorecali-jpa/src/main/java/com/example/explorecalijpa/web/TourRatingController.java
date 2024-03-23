@@ -3,7 +3,6 @@ package com.example.explorecalijpa.web;
 import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.explorecalijpa.business.TourRatingService;
+
+import jakarta.validation.Valid;
 
 /**
  * Tour Rating Controller
@@ -37,7 +38,7 @@ public class TourRatingController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public void createTourRating(@PathVariable(value = "tourId") int tourId,
-      @RequestBody @Validated RatingDto ratingDto) {
+      @RequestBody @Valid RatingDto ratingDto) {
     tourRatingService.createNew(tourId, ratingDto.getCustomerId(), ratingDto.getScore(), ratingDto.getComment());
   }
 

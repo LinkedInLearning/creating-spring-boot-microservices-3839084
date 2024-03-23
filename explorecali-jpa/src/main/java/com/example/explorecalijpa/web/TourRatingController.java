@@ -1,13 +1,11 @@
 package com.example.explorecalijpa.web;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,8 +46,8 @@ public class TourRatingController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public RatingDto createTourRating(@PathVariable(value = "tourId") int tourId,
-      @RequestBody @Validated RatingDto ratingDto) {
-    TourRating rating = tourRatingService.createNew(tourId, ratingDto.getCustomerId(),
+      @RequestBody @Valid RatingDto ratingDto) {
+      TourRating rating = tourRatingService.createNew(tourId, ratingDto.getCustomerId(), 
         ratingDto.getScore(), ratingDto.getComment());
     return new RatingDto(rating);
   }
@@ -79,10 +77,9 @@ public class TourRatingController {
    * @return The modified Rating DTO.
    */
   @PutMapping
-  public RatingDto updateWithPut(@PathVariable(value = "tourId") int tourId,
-      @RequestBody @Validated RatingDto ratingDto) {
-    return new RatingDto(tourRatingService.update(tourId, ratingDto.getCustomerId(),
-        ratingDto.getScore(), ratingDto.getComment()));
+  public RatingDto updateWithPut(@PathVariable(value = "tourId") int tourId, @RequestBody @Valid RatingDto ratingDto) {
+      return new RatingDto(tourRatingService.update(tourId, ratingDto.getCustomerId(),
+                ratingDto.getScore(), ratingDto.getComment()));
   }
 
   /**
@@ -94,7 +91,7 @@ public class TourRatingController {
    */
   @PatchMapping
   public RatingDto updateWithPatch(@PathVariable(value = "tourId") int tourId,
-      @RequestBody @Validated RatingDto ratingDto) {
+      @RequestBody @Valid RatingDto ratingDto) {
     return new RatingDto(tourRatingService.updateSome(tourId,
         ratingDto.getCustomerId(),
         Optional.ofNullable(ratingDto.getScore()),

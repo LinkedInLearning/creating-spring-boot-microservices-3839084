@@ -14,6 +14,7 @@ import jakarta.validation.ConstraintViolationException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+  
   /**
    * Leverage Exception Handler frameworf for id not found Exception.
    * 
@@ -43,4 +44,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     return  createResponseEntity(pd, null, HttpStatus.BAD_REQUEST, request);
   }
   
+  /**
+   * Leverage Exception Handler frameworf for unexpected Exceptions.
+   * 
+   * @param ex
+   * @param request
+   * @return
+   */
+  @ExceptionHandler(Exception.class)
+  public final ResponseEntity<Object> handleNoSuchElementException(Exception ex, WebRequest request) {
+    ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+    return createResponseEntity(pd, null, HttpStatus.INTERNAL_SERVER_ERROR, request);
+  }
 }

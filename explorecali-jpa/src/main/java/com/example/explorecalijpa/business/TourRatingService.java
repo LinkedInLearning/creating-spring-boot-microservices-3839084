@@ -41,9 +41,10 @@ public class TourRatingService {
    * @param score      score of the tour rating
    * @param comment    additional comment
    * @throws NoSuchElementException if no Tour found.
+   * @return created entity
    */
-  public void createNew(int tourId, Integer customerId, Integer score, String comment) throws NoSuchElementException {
-    tourRatingRepository.save(new TourRating(verifyTour(tourId), customerId,
+  public TourRating createNew(int tourId, Integer customerId, Integer score, String comment) throws NoSuchElementException {
+    return tourRatingRepository.save(new TourRating(verifyTour(tourId), customerId,
         score, comment));
   }
 

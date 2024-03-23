@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+  
   /**
    * Leverage Exception Handler frameworf for id not found Exception.
    * 
@@ -24,5 +25,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     
     ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
     return  createResponseEntity(pd, null, HttpStatus.NOT_FOUND, request);
+  }
+
+  /**
+   * Leverage Exception Handler frameworf for unexpected Exceptions.
+   * 
+   * @param ex
+   * @param request
+   * @return
+   */
+  @ExceptionHandler(Exception.class)
+  public final ResponseEntity<Object> handleNoSuchElementException(Exception ex, WebRequest request) {
+    ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+    return createResponseEntity(pd, null, HttpStatus.INTERNAL_SERVER_ERROR, request);
   }
 }

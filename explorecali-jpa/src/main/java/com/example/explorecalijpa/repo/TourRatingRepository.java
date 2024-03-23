@@ -14,7 +14,7 @@ import com.example.explorecalijpa.model.TourRating;
  *
  * Created by Mary Ellen Bowman
  */
-@RepositoryRestResource(exported = false)
+//@RepositoryRestResource(exported = false)
 public interface TourRatingRepository extends JpaRepository<TourRating, Integer>, CrudRepository<TourRating, Integer> {
 
   /**

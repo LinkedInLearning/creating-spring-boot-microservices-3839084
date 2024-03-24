@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import com.example.explorecalijpa.business.TourPackageService;
 import com.example.explorecalijpa.business.TourService;
@@ -16,9 +18,22 @@ import com.example.explorecalijpa.model.Region;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+
 @SpringBootApplication
 public class ExplorecaliJpaApplication implements CommandLineRunner {
     private final String TOUR_IMPORT_FILE = "ExploreCalifornia.json";
+
+    @Bean
+    public OpenAPI swaggerHeader() {
+        return new OpenAPI()
+            .info((new Info())
+            .description("Services for the Explore California Relational Database.")
+            .title(StringUtils.substringBefore(getClass().getSimpleName(), "$"))
+            .version("3.0.0"));
+    }
+    
 
     @Autowired
     private TourPackageService tourPackageService;

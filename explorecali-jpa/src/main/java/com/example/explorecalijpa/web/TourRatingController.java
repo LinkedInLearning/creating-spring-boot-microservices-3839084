@@ -128,7 +128,7 @@ public class TourRatingController {
   public void createManyTourRatings(@PathVariable(value = "tourId") int tourId,
                                     @RequestParam(value = "score") int score,
                                     @RequestBody List<Integer> customers) {
-    log.info("POSt /tours/{}/ratings/batch", tourId);
+    log.info("POST /tours/{}/ratings/batch", tourId);
     tourRatingService.rateMany(tourId, score, customers);
   }
 }

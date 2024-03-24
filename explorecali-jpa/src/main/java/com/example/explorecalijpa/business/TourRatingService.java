@@ -14,6 +14,7 @@ import com.example.explorecalijpa.repo.TourRepository;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Tour Rating Service
@@ -21,6 +22,7 @@ import jakarta.validation.ConstraintViolationException;
  * Created by Mary Ellen Bowman.
  */
 @Service
+@Slf4j
 @Transactional
 public class TourRatingService {
   private TourRatingRepository tourRatingRepository;
@@ -48,6 +50,7 @@ public class TourRatingService {
    * @return created entity
    */
   public TourRating createNew(int tourId, Integer customerId, Integer score, String comment) throws NoSuchElementException {
+    log.info("Create a tour rating for tour {} and customer {}", tourId, String.valueOf(customerId));
     return tourRatingRepository.save(new TourRating(verifyTour(tourId), customerId,
         score, comment));
   }
@@ -59,6 +62,7 @@ public class TourRatingService {
    * @return TourRatings
    */
   public Optional<TourRating> lookupRatingById(int id) {
+    log.info("lookup rating by id {}", id);
     return tourRatingRepository.findById(id);
   }
 
@@ -68,6 +72,7 @@ public class TourRatingService {
    * @return List of TourRatings
    */
   public List<TourRating> lookupAll() {
+    log.info("Lookup all tour ratings");
     return tourRatingRepository.findAll();
   }
 
@@ -80,6 +85,7 @@ public class TourRatingService {
    * @throws NoSuchElementException if no Tour found.
    */
   public List<TourRating> lookupRatings(int tourId) throws NoSuchElementException {
+    log.info("Lookup ratings for tour {}", tourId);
     return tourRatingRepository.findByTourId(verifyTour(tourId).getId());
   }
 
@@ -94,6 +100,7 @@ public class TourRatingService {
    */
   public TourRating update(int tourId, Integer customerId, Integer score, String comment)
       throws NoSuchElementException {
+    log.info("Update tour {} customer {}", tourId, customerId);
     TourRating rating = verifyTourRating(tourId, customerId);
     rating.setScore(score);
     rating.setComment(comment);
@@ -112,6 +119,7 @@ public class TourRatingService {
    */
   public TourRating updateSome(int tourId, Integer customerId, Optional<Integer> score, Optional<String> comment)
       throws NoSuchElementException {
+    log.info("Update some of tour {} customer {}", tourId, customerId);
     TourRating rating = verifyTourRating(tourId, customerId);
     score.ifPresent(s ->rating.setScore(s));
     comment.ifPresent(c -> rating.setComment(c));
@@ -126,6 +134,7 @@ public class TourRatingService {
    * @throws NoSuchElementException if no Tour found.
    */
   public void delete(int tourId, Integer customerId) throws NoSuchElementException {
+    log.info("Delete rating for tour {} customer {}", tourId, customerId);
     TourRating rating = verifyTourRating(tourId, customerId);
     tourRatingRepository.delete(rating);
   }

@@ -48,9 +48,9 @@ public class ExplorecaliJpaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createTourAllPackages();
+        // createTourAllPackages();
         System.out.println("Persisted Packages = " + tourPackageService.total());
-        createToursFromFile(TOUR_IMPORT_FILE);
+        // createToursFromFile(TOUR_IMPORT_FILE);
         System.out.println("Persisted Tours = " + tourService.total());
        
         /********* CHALLENGES **********/

@@ -1,0 +1,13 @@
+<!--
+  Use spring initializr to create a new project here
+  Name: explorecali-images
+  Java Version: 21
+  Spring Boot Version: (Latest Non-M3 or Snapshot)
+  Package com.example.explorecaliimages
+  Dependencies:
+  Spring Web
+  Spring Data MongoDB
+  Spring Boot Actuator
+  Lombok
+  Docker Compose Support
+-->

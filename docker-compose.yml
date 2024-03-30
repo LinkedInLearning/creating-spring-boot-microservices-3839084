@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  mysqldb:
+    image: mysql:latest
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=verysecret
+      - MYSQL_DATABASE=mydatabase
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+
+  mongo_db:
+    image: mongo:5.0.2
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/mongo:/data/db
+  mongo-app:
+    depends_on:
+      - mongo_db
+    image: explorecali-images:3.0.0
+    ports:
+      - "8081"
+    environment:
+      SPRING_APPLICATION_JSON: '{ "server.port" : "8081", "spring.data.mongodb.uri" : "mongodb://root:123456@mongo_db:27017/lil_database?authSource=admin", "spring.docker.compose.enabled": "false" }'
+  jpa-app:
+    depends_on:
+      - mysqldb
+    image: explorecali-jpa:3.0.0
+    ports:
+      - "8082"
+    environment:
+      SPRING_APPLICATION_JSON: '{ "server.port" : "8082", "spring.datasource.url" : "jdbc:mysql://mysqldb:3306/mydatabase", "spring.datasource.username" : "root", "spring.datasource.password" : "verysecret", "spring.docker.compose.enabled": "false" }'
+
+  gateway-app:
+    depends_on:
+      - jpa-app
+      - mongo-app
+    image: explorecali-gateway:3.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      - MONGO_APP_URI=http://mongo-app:8081
+      - JPA_APP_URI=http://jpa-app:8082
+
+volumes:
+  db:

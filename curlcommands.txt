@@ -1,0 +1,23 @@
+echo -n "user:password" | base 64 
+
+
+curl -X 'POST' \
+  'http://localhost:8080/images/upload' \
+  -H 'accept: */*' \
+  -H 'Content-Type: multipart/form-data' \
+   -H 'Authorization: Basic base64-encoded-username&password' \
+  -F 'file=@Booth1.jpg'
+
+  curl -X 'POST' \
+  'http://localhost:8080/images/upload' \
+  -H 'accept: */*' \
+  -H 'Content-Type: multipart/form-data' \
+   -H 'Authorization: Basic base64-encoded-username&password' \
+  -F 'file=@Booth1.jpg'
+
+  curl -X 'POST' \
+  'http://localhost:8080/packages' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+   -H 'Authorization: Basic dbase64-encoded-username&password' \
+ -d '{"code":"BB","name":"beebee"}'

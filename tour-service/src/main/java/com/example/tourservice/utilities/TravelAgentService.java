@@ -6,7 +6,7 @@ public class TravelAgentService {
     public TravelAgentService(TourRepository tourRepository) {
         this.tourRepository = tourRepository;
     }
-    public void display() {
+    public void displayTours() {
         tourRepository.findAll().stream().forEach(System.out::println);
     }
 }

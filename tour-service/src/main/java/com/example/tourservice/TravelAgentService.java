@@ -1,4 +1,6 @@
-package com.example.tourservice.utilities;
+package com.example.tourservice;
+
+import com.example.tourservice.utilities.TourRepository;
 
 public class TravelAgentService {
     private  TourRepository tourRepository;
@@ -6,7 +8,7 @@ public class TravelAgentService {
     public TravelAgentService(TourRepository tourRepository) {
         this.tourRepository = tourRepository;
     }
-    public void display() {
+    public void displayTours() {
         tourRepository.findAll().stream().forEach(System.out::println);
     }
 }

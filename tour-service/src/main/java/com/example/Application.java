@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.example.tourservice.SpringBeans;
-import com.example.tourservice.utilities.TravelAgentService;
+import com.example.tourservice.TravelAgentService;
 
 public class Application {
 

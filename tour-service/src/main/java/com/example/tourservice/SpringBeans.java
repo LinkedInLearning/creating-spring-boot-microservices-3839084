@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 
 import com.example.tourservice.utilities.TourInitializer;
 import com.example.tourservice.utilities.TourRepository;
-import com.example.tourservice.utilities.TravelAgentService;
 
 @Configuration
 public class SpringBeans {

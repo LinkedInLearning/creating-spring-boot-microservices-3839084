@@ -4,6 +4,7 @@
   Java Version: 21
   Spring Boot Version: (Latest Non-M3 or Snapshot)
   Package com.example.explorecaliimages
+  version: 3.0.0
   Dependencies:
   Spring Web
   Spring Data MongoDB

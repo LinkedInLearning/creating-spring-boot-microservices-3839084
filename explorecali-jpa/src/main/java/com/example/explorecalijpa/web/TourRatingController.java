@@ -10,6 +10,8 @@ import com.example.explorecalijpa.business.TourRatingService;
  *
  * Created by Mary Ellen Bowman
  */
+@RestController
+@RequestMapping(path = "/tours/{tourId}/ratings")
 public class TourRatingController {
   private TourRatingService tourRatingService;
 

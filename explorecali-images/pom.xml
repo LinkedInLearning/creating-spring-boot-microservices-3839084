@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>explorecali-images</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>3.0.0</version>
 	<name>explorecali-images</name>
 	<description>Explore California Spring Boot Mongodb Project</description>
 	<properties>

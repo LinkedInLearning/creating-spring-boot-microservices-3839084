@@ -4,6 +4,9 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Domain Document Class for an Image.
+ */
 @Document(collection = "images")
 @Data
 public class Image {

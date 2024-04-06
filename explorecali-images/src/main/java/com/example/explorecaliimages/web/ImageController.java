@@ -16,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Images Restcontroller.
+ */
 @RestController
 @Slf4j
 @Tag(name = "Hosting of Images", description = "Upload and fetch Images for the Explore California website")

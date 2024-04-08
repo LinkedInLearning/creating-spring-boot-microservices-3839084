@@ -3,15 +3,15 @@ spring:
     gateway:
       routes:
         - id: tour-route
-          uri: ${JPA_APP_URI}
+          uri: ${JPA_APP_URI:http://localhost:8082}
           predicates:
             - Path=/tours/**
         - id: packages-route
-          uri: ${JPA_APP_URI}
+          uri: ${JPA_APP_URI:http://localhost:8082}
           predicates:
             - Path=/packages/**
         - id: tour-image-route
-          uri: ${MONGO_APP_URI}
+          uri: ${MONGO_APP_URI:http://localhost:8081}
           predicates:
             - Path=/images/**
           filters:

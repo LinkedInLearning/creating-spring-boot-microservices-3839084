@@ -26,3 +26,11 @@ curl -X 'POST' \
   -H 'Content-Type: application/json' \
    -H 'Authorization: Basic LW51c2VyOmFlYThiYjNiLTBhZjMtNDY1MS1hYzk1LTMzNTcwNGJmYWEwYwo=' \
  -d '{"code":"BB","name":"Beekeapers you Betcha"}'
+
+curl -v -X 'POST' \
+  'http://localhost:8080/packages' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+   -d '{"code":"BB","name":"Beekeapers you Betcha"}' \
+   -u "user:<password>"
+

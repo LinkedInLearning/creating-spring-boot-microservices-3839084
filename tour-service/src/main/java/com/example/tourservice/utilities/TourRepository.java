@@ -3,7 +3,6 @@ package com.example.tourservice.utilities;
 import java.util.*;
 
 import com.example.tourservice.Tour;
-import com.example.tourservice.TourType;
 
 public class TourRepository {
     private final List<Tour> tours = new ArrayList<>();
@@ -22,7 +21,7 @@ public class TourRepository {
         return tours;
     }
 
-    public List<Tour> findByCategory(TourType tc) {
-        return tours.stream().filter(t -> t.type().equals(tc)).toList();
+    public List<Tour> findByType(Boolean isKidFriendly) {
+        return tours.stream().filter(t -> t.kidFriendly() == isKidFriendly).toList();
     }
 }

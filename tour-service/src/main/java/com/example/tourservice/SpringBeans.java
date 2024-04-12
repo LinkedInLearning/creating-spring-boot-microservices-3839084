@@ -3,7 +3,6 @@ package com.example.tourservice;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.example.tourservice.utilities.TourInitializer;
 import com.example.tourservice.utilities.TourRepository;
 
 @Configuration
@@ -14,8 +13,8 @@ public class SpringBeans {
     return new TourRepository();
   }
   @Bean
-  public TourInitializer tourInitializer() {
-    return new TourInitializer(tourRepository());
+  public TourManagementService tourManagementService() {
+    return new TourManagementService(tourRepository());
   }
 
   @Bean

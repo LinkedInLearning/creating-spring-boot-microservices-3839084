@@ -10,8 +10,11 @@ public class Application {
 
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringBeans.class);
-        TravelAgentService agentService = context.getBean(TravelAgentService.class);
+        TravelAgentService agent = context.getBean(TravelAgentService.class);
+        System.out.println("\n******Explore California Tour Catalogue******");
+        agent.displayTours();
 
-        agentService.displayTours();
+        System.out.println("\n******Explore California Tour Kid Friendly Tours******");
+        agent.displayToursBy(true);
     }
 }

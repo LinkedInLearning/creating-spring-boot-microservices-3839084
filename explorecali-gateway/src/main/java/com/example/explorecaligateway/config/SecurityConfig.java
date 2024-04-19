@@ -23,6 +23,9 @@ public class    SecurityConfig {
        return http
                .authorizeExchange(exchanges -> exchanges
                        .pathMatchers(HttpMethod.POST, "/**").authenticated()
+                       .pathMatchers(HttpMethod.PUT, "/**").authenticated()
+                       .pathMatchers(HttpMethod.PATCH, "/**").authenticated()
+                       .pathMatchers(HttpMethod.DELETE, "/**").authenticated()
                        .pathMatchers(HttpMethod.GET, "/**").permitAll()
                )
               .httpBasic(withDefaults())

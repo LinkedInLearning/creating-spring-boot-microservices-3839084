@@ -1,7 +1,7 @@
-version: "3.8"
+
 
 services:
-  mysqldb:
+  mysql_db:
     image: mysql:latest
     restart: unless-stopped
     environment:
@@ -25,6 +25,7 @@ services:
   mongo-app:
     depends_on:
       - mongo_db
+    restart: on-failure
     image: explorecali-images:3.0.0
     ports:
       - "8081"
@@ -32,7 +33,8 @@ services:
       SPRING_APPLICATION_JSON: '{ "server.port" : "8081", "spring.data.mongodb.uri" : "mongodb://root:123456@mongo_db:27017/lil_database?authSource=admin", "spring.docker.compose.enabled": "false" }'
   jpa-app:
     depends_on:
-      - mysqldb
+      - mysql_db
+    restart: on-failure
     image: explorecali-jpa:3.0.0
     ports:
       - "8082"
@@ -43,6 +45,7 @@ services:
     depends_on:
       - jpa-app
       - mongo-app
+    restart: on-failure
     image: explorecali-gateway:3.0.0
     ports:
       - "8080:8080"

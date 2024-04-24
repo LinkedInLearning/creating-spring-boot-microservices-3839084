@@ -53,17 +53,6 @@ public class TourRatingServiceTest {
   @Mock
   private TourRating tourRatingMock2;
 
-  /**
-   * Mock responses to commonly invoked methods.
-   */
-  //@BeforeEach
-  public void setupReturnValuesOfMockMethods() {
-    when(tourRepositoryMock.findById(TOUR_ID)).thenReturn(Optional.of(tourMock));
-    when(tourMock.getId()).thenReturn(TOUR_ID);
-    when(tourRatingRepositoryMock.findByTourIdAndCustomerId(TOUR_ID, CUSTOMER_ID))
-        .thenReturn(Optional.of(tourRatingMock));
-    when(tourRatingRepositoryMock.findByTourId(TOUR_ID)).thenReturn(Arrays.asList(tourRatingMock));
-  }
 
   /**************************************************************************************
    *

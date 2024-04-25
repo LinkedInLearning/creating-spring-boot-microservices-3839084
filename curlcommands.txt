@@ -1,11 +1,10 @@
 echo -n "user:password" | base64 
 
-curl -X 'POST' \
-  'http://localhost:8081/api/images/upload' \
-  -H 'accept: */*' \
-  -H 'Content-Type: multipart/form-data' \
-    -F 'file=@Booth.jpg'
+#Authentication required to create a package
+curl -v -X 'POST'   'http://localhost:8080/packages'   -H 'accept: */*'   -H 'Content-Type: application/json'    -d '{"code":"BB","name":"Beekeepers you Betcha"}'    -u "user:efe298cd-4059-480f-8a72-e1cffd9659f8"
 
+#Authentication with base64 encoding
+echo -n "user:password" | base64 
 curl -X 'POST' \
   'http://localhost:8080/images/upload' \
   -H 'accept: */*' \
@@ -13,32 +12,26 @@ curl -X 'POST' \
    -H 'Authorization: Basic base64-encoded-username&password' \
   -F 'file=@Booth1.jpg'
 
+#This will fail because 8081 is not exposed
+curl -X 'POST' \
+  'http://localhost:8081/api/images/upload' \
+  -H 'accept: */*' \
+  -H 'Content-Type: multipart/form-data' \
+    -F 'file=@Booth.jpg'
+
+#This will work because of 8080
   curl -X 'POST' \
   'http://localhost:8080/images/upload' \
   -H 'accept: */*' \
   -H 'Content-Type: multipart/form-data' \
    -u "user:password" \
-   -F 'file=@Booth1.jpg'
-
-  curl -v -X 'POST' \
-  'http://localhost:8080/packages' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-   -u "user:password" \
-    -d '{"code":"BB","name":"Beekeapers you Betcha"}'
-
-curl -v -X 'POST' \
-  'http://localhost:8080/packages' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-   -d '{"code":"BB","name":"Beekeapers you Betcha"}' \
-   -u "user:password"
+   -F 'file=@Booth.jpg'
 
 curl -v -X 'DELETE' \
   'http://localhost:8080/packages/BB' \
    -u "user:password"
 
 
-clean up 
+#clean up 
 sudo su root
 rm -r data

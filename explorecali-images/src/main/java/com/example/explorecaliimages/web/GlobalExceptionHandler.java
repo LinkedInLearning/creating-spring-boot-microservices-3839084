@@ -1,7 +1,5 @@
 package com.example.explorecaliimages.web;
 
-import java.util.NoSuchElementException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;

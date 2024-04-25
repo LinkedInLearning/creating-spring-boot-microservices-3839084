@@ -37,3 +37,8 @@ curl -v -X 'POST' \
 curl -v -X 'DELETE' \
   'http://localhost:8080/packages/BB' \
    -u "user:password"
+
+
+clean up 
+sudo su root
+rm -r data

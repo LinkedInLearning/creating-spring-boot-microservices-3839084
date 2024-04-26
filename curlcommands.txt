@@ -35,6 +35,6 @@ curl -v -X 'DELETE' \
 #clean up 
 Stop docker compose
 remove images
-
+docker volume prune
 sudo su root
 rm -r data

@@ -1,11 +1,32 @@
 {
-  "extensions": [
-    "GitHub.github-vscode-theme"
-    // Additional Extensions Here
-  ],
+  "name": "Java",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "none",
+      "installMaven": "true",
+      "installGradle": "false"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.github-vscode-theme",
+        "rangav.vscode-thunder-client",
+        "vmware.vscode-boot-dev-pack"
+      ]
+    }
+  },
+  //  "extensions": [
+  //    "GitHub.github-vscode-theme",
+  //    "rangav.vscode-thunder-client",
+  //    "vmware.vscode-boot-dev-pack"
+  // Additional Extensions Here
+  //  ],
   "onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc",
   "postAttachCommand": "git pull --all"
-  
   // Update welcome text and set terminal prompt to '$ '
 }
 // DevContainer Reference: https://code.visualstudio.com/docs/remote/devcontainerjson-reference

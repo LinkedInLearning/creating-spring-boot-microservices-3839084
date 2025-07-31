@@ -8,6 +8,7 @@ import com.example.tourservice.TravelAgentService;
 
 public class Application {
 
+
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringBeans.class);
         TravelAgentService agent = context.getBean(TravelAgentService.class);
